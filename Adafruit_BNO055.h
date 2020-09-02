@@ -22,6 +22,8 @@
 #ifndef __ADAFRUIT_BNO055_H__
 #define __ADAFRUIT_BNO055_H__
 
+#define DOUBLE float // Define to double for higher precision calculations, or use float for faster performance
+
 #include "Arduino.h"
 #include <Wire.h>
 

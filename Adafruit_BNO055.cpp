@@ -400,39 +400,39 @@ imu::Vector<3> Adafruit_BNO055::getVector(adafruit_vector_type_t vector_type) {
   switch (vector_type) {
   case VECTOR_MAGNETOMETER:
     /* 1uT = 16 LSB */
-    xyz[0] = ((double)x) / 16.0;
-    xyz[1] = ((double)y) / 16.0;
-    xyz[2] = ((double)z) / 16.0;
+    xyz[0] = ((DOUBLE)x) / 16.0;
+    xyz[1] = ((DOUBLE)y) / 16.0;
+    xyz[2] = ((DOUBLE)z) / 16.0;
     break;
   case VECTOR_GYROSCOPE:
     /* 1dps = 16 LSB */
-    xyz[0] = ((double)x) / 16.0;
-    xyz[1] = ((double)y) / 16.0;
-    xyz[2] = ((double)z) / 16.0;
+    xyz[0] = ((DOUBLE)x) / 16.0;
+    xyz[1] = ((DOUBLE)y) / 16.0;
+    xyz[2] = ((DOUBLE)z) / 16.0;
     break;
   case VECTOR_EULER:
     /* 1 degree = 16 LSB */
-    xyz[0] = ((double)x) / 16.0;
-    xyz[1] = ((double)y) / 16.0;
-    xyz[2] = ((double)z) / 16.0;
+    xyz[0] = ((DOUBLE)x) / 16.0;
+    xyz[1] = ((DOUBLE)y) / 16.0;
+    xyz[2] = ((DOUBLE)z) / 16.0;
     break;
   case VECTOR_ACCELEROMETER:
     /* 1m/s^2 = 100 LSB */
-    xyz[0] = ((double)x) / 100.0;
-    xyz[1] = ((double)y) / 100.0;
-    xyz[2] = ((double)z) / 100.0;
+    xyz[0] = ((DOUBLE)x) / 100.0;
+    xyz[1] = ((DOUBLE)y) / 100.0;
+    xyz[2] = ((DOUBLE)z) / 100.0;
     break;
   case VECTOR_LINEARACCEL:
     /* 1m/s^2 = 100 LSB */
-    xyz[0] = ((double)x) / 100.0;
-    xyz[1] = ((double)y) / 100.0;
-    xyz[2] = ((double)z) / 100.0;
+    xyz[0] = ((DOUBLE)x) / 100.0;
+    xyz[1] = ((DOUBLE)y) / 100.0;
+    xyz[2] = ((DOUBLE)z) / 100.0;
     break;
   case VECTOR_GRAVITY:
     /* 1m/s^2 = 100 LSB */
-    xyz[0] = ((double)x) / 100.0;
-    xyz[1] = ((double)y) / 100.0;
-    xyz[2] = ((double)z) / 100.0;
+    xyz[0] = ((DOUBLE)x) / 100.0;
+    xyz[1] = ((DOUBLE)y) / 100.0;
+    xyz[2] = ((DOUBLE)z) / 100.0;
     break;
   }
 
@@ -463,7 +463,7 @@ imu::Quaternion Adafruit_BNO055::getQuat() {
    * https://cdn-shop.adafruit.com/datasheets/BST_BNO055_DS000_12.pdf
    * 3.6.5.5 Orientation (Quaternion)
    */
-  const double scale = (1.0 / (1 << 14));
+  const DOUBLE scale = (1.0 / (1 << 14));
   imu::Quaternion quat(scale * w, scale * x, scale * y, scale * z);
   return quat;
 }

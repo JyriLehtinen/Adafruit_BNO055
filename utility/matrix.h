@@ -31,7 +31,7 @@ namespace imu {
 
 template <uint8_t N> class Matrix {
 public:
-  Matrix() { memset(_cell_data, 0, N * N * sizeof(double)); }
+  Matrix() { memset(_cell_data, 0, N * N * sizeof(DOUBLE)); }
 
   Matrix(const Matrix &m) {
     for (int ij = 0; ij < N * N; ++ij) {
@@ -76,11 +76,11 @@ public:
     }
   }
 
-  double operator()(int i, int j) const { return cell(i, j); }
-  double &operator()(int i, int j) { return cell(i, j); }
+  DOUBLE operator()(int i, int j) const { return cell(i, j); }
+  DOUBLE &operator()(int i, int j) { return cell(i, j); }
 
-  double cell(int i, int j) const { return _cell_data[i * N + j]; }
-  double &cell(int i, int j) { return _cell_data[i * N + j]; }
+  DOUBLE cell(int i, int j) const { return _cell_data[i * N + j]; }
+  DOUBLE &cell(int i, int j) { return _cell_data[i * N + j]; }
 
   Matrix operator+(const Matrix &m) const {
     Matrix ret;
@@ -98,7 +98,7 @@ public:
     return ret;
   }
 
-  Matrix operator*(double scalar) const {
+  Matrix operator*(DOUBLE scalar) const {
     Matrix ret;
     for (int ij = 0; ij < N * N; ++ij) {
       ret._cell_data[ij] = _cell_data[ij] * scalar;
@@ -143,9 +143,9 @@ public:
     return ret;
   }
 
-  double determinant() const {
+  DOUBLE determinant() const {
     // specialization for N == 1 given below this class
-    double det = 0.0, sign = 1.0;
+    DOUBLE det = 0.0, sign = 1.0;
     for (int i = 0; i < N; ++i, sign = -sign)
       det += sign * cell(0, i) * minor_matrix(0, i).determinant();
     return det;
@@ -153,7 +153,7 @@ public:
 
   Matrix invert() const {
     Matrix ret;
-    double det = determinant();
+    DOUBLE det = determinant();
 
     for (int i = 0; i < N; i++) {
       for (int j = 0; j < N; j++) {
@@ -165,18 +165,18 @@ public:
     return ret;
   }
 
-  double trace() const {
-    double tr = 0.0;
+  DOUBLE trace() const {
+    DOUBLE tr = 0.0;
     for (int i = 0; i < N; ++i)
       tr += cell(i, i);
     return tr;
   }
 
 private:
-  double _cell_data[N * N];
+  DOUBLE _cell_data[N * N];
 };
 
-template <> inline double Matrix<1>::determinant() const { return cell(0, 0); }
+template <> inline DOUBLE Matrix<1>::determinant() const { return cell(0, 0); }
 
 }; // namespace imu
 
